@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PassionLab — Lean Startup Canvas</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:       #07213D;
+  --blue-deep:  #0D3A6E;
+  --blue-mid:   #1A5FA8;
+  --blue:       #2B7DE9;
+  --blue-light: #5B9EF5;
+  --blue-pale:  #C6DCFA;
+  --blue-wash:  #E8F1FD;
+  --blue-ghost: #F2F7FE;
+  --white:      #FFFFFF;
+  --off-white:  #F7F9FC;
+  --border:     #B0CDF0;
+}
+
+html, body {
+  background: var(--white);
+  color: var(--navy);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+body { padding: 0; }
+
+/* ───────────────────────────────── */
+/*    PAGE — LEAN CANVAS             */
+/* ───────────────────────────────── */
+.page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 28px 32px 40px;
+}
+
+/* Header */
+.title {
+  font-family: Arial, sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+}
+.subtitle {
+  font-style: italic;
+  font-size: 11px;
+  color: var(--blue-mid);
+  margin-bottom: 10px;
+}
+.subbar {
+  background: var(--blue-wash);
+  padding: 8px 14px;
+  font-size: 11px;
+  color: var(--blue-deep);
+  border: 1px solid var(--border);
+}
+
+/* Grid */
+.row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-left: 1px solid var(--border);
+}
+
+.cell {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+}
+.cell.ghost { background: var(--blue-ghost); }
+.cell.wash  { background: var(--blue-wash); }
+.cell.navy  { background: var(--navy); color: var(--white); }
+.cell.midblue { background: var(--blue-mid); color: var(--white); }
+
+/* Label row */
+.label-row .cell {
+  background: var(--blue-mid);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 9px 12px;
+  text-align: center;
+  border-right: 1px solid var(--blue-mid);
+}
+
+/* Hint row */
+.hint-row .cell {
+  background: var(--blue-ghost);
+  font-style: italic;
+  font-size: 10px;
+  color: var(--blue-deep);
+  padding: 6px 12px;
+}
+
+/* Content row */
+.content-row .cell {
+  padding: 14px 14px;
+  font-size: 11.5px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  vertical-align: top;
+}
+
+.content-row .cell.navy { color: var(--white); }
+
+/* Bottom 3-section row (cost / timeline / revenue) */
+.bottom-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  border-left: 1px solid var(--border);
+}
+.bottom-row > .cell {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.bottom-label-row { background: var(--blue-mid); }
+.bottom-label-row .cell {
+  background: var(--blue-mid);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 9px 12px;
+  text-align: center;
+  border-right: 1px solid var(--blue-mid);
+}
+.bottom-label-row .cell.deep { background: var(--blue-deep); border-right-color: var(--blue-deep); }
+
+.bottom-hint-row .cell {
+  background: var(--blue-ghost);
+  font-style: italic;
+  font-size: 10px;
+  color: var(--blue-deep);
+  padding: 6px 12px;
+}
+
+.bottom-content-row .cell {
+  padding: 14px 14px;
+  font-size: 11.5px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  vertical-align: top;
+}
+.bottom-content-row .cell.timeline { background: var(--blue-wash); }
+
+/* Footer */
+.footer {
+  background: var(--blue-ghost);
+  border: 1px solid var(--border);
+  border-top: none;
+  text-align: center;
+  font-size: 10px;
+  font-style: italic;
+  color: var(--blue-mid);
+  padding: 8px 12px;
+}
+
+/* ───────────────────────────────── */
+/*   COSTING DETAIL SHEET            */
+/* ───────────────────────────────── */
+.costing-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 28px 32px 40px;
+  border-top: 4px solid var(--blue-wash);
+  margin-top: 24px;
+}
+
+.cost-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.cost-sub {
+  font-style: italic;
+  font-size: 11px;
+  color: var(--blue-mid);
+  margin-bottom: 18px;
+}
+
+.section-bar {
+  background: var(--blue-mid);
+  color: var(--white);
+  padding: 9px 14px;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  margin-top: 18px;
+}
+
+table.cost-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11.5px;
+}
+table.cost-table th {
+  background: var(--blue-deep);
+  color: var(--white);
+  font-weight: 700;
+  padding: 9px 10px;
+  text-align: center;
+  border: 1px solid var(--blue-deep);
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+}
+table.cost-table td {
+  border: 1px solid var(--border);
+  padding: 9px 10px;
+  vertical-align: middle;
+}
+table.cost-table tbody tr:nth-child(odd) td { background: var(--blue-ghost); }
+table.cost-table tbody tr:nth-child(even) td { background: var(--white); }
+table.cost-table td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+table.cost-table td.note {
+  font-style: italic;
+  color: var(--blue-deep);
+  font-size: 10.5px;
+}
+table.cost-table tr.subtotal td {
+  background: var(--blue-mid) !important;
+  color: var(--white);
+  font-weight: 700;
+  border-color: var(--blue-mid);
+}
+table.cost-table tr.grand td {
+  background: var(--navy) !important;
+  color: var(--white);
+  font-weight: 700;
+  font-size: 13px;
+  border-color: var(--navy);
+  padding: 12px 14px;
+}
+
+.col-item    { width: 38%; }
+.col-qty     { width: 7%;  }
+.col-money   { width: 13%; }
+.col-notes   { width: 28%; }
+
+/* Notes block */
+.notes-block {
+  background: var(--blue-wash);
+  padding: 14px 18px;
+  margin-top: 18px;
+  border: 1px solid var(--border);
+}
+.notes-block h4 {
+  font-size: 12px;
+  color: var(--navy);
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+.notes-block ul {
+  list-style: none;
+  padding: 0;
+}
+.notes-block li {
+  font-size: 11px;
+  color: var(--navy);
+  padding: 4px 0;
+  line-height: 1.55;
+}
+
+/* Signoff block */
+.signoff {
+  margin-top: 32px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  text-align: right;
+}
+.signoff-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 0.03em;
+  margin-bottom: 6px;
+}
+.signoff-line {
+  font-size: 11px;
+  font-style: italic;
+  color: var(--blue-mid);
+  line-height: 1.6;
+}
+
+/* Print */
+@media print {
+  body { padding: 0; }
+  .page, .costing-page { padding: 12px 16px; max-width: 100%; }
+  .costing-page { page-break-before: always; }
+}
+</style>
+</head>
+<body>
+
+<!-- LEAN CANVAS -->
+<div class="page">
+
+  <div class="title">PASSIONLAB</div>
+  <div class="subtitle">Lean Startup Canvas  ·  Integrated Manufacturing &amp; Digital Production System  ·  Business Overview, not for investors</div>
+  <div class="subbar">Premium &amp; high-fashion garment manufacturing  ·  India</div>
+
+  <div style="height: 8px;"></div>
+
+  <div class="row label-row">
+    <div class="cell">PROBLEM</div>
+    <div class="cell">SOLUTION</div>
+    <div class="cell">UNIQUE VALUE PROPOSITION</div>
+    <div class="cell">UNFAIR ADVANTAGE</div>
+    <div class="cell">CUSTOMER SEGMENTS</div>
+  </div>
+
+  <div class="row hint-row">
+    <div class="cell">What is structurally broken in the market</div>
+    <div class="cell">How PassionLab closes each gap</div>
+    <div class="cell">The single line that defines the business</div>
+    <div class="cell">What cannot easily be bought or copied</div>
+    <div class="cell">Who this is built for, who buys first</div>
+  </div>
+
+  <div class="row content-row">
+    <div class="cell">1. Sample-to-bulk gap. Samples are made for perfection. Bulk is made for speed. Production-friendliness is rarely engineered into sampling, so brands receive bulk that does not match what they approved. Industry sources confirm this is a documented, system-level failure, not bad luck.
+
+2. Sampling iteration loops. Brands change their minds; multiple physical samples burn time and cost on both sides. Fit, fabric behaviour, and drape are debated through trial-and-error, not engineered.
+
+3. Visibility gap. Brands have no live view into sourcing, WIP, defect rates, or production status. Communication breaks down during production exactly when it is most needed.
+
+4. Quality is claimed, not proven. Every factory says it delivers quality. None can show the data, the process, or the audit trail behind it.
+
+5. Labour and HR failure. High operator turnover, no role clarity, no ownership culture, narrow specialisation creating bottlenecks and quality variance.</div>
+
+    <div class="cell ghost">1. Production-engineered sampling. CLO 3D locks fit, placement, and design before a single piece of fabric is cut. Founder fit expertise and fabric behaviour knowledge guide construction decisions upstream.
+
+2. Fewer sampling iterations. CLO + curated fabric library + drape knowledge means brands reach the right sample faster, with fewer physical rounds.
+
+3. Quicktrace digital tool. In-house production SOP, KPIs and metrics visulaised. Piece-level tracking with defect capture. Pareto + 5 Whys analysis. Live dashboard for brands. DPP-capable. 
+
+4. Checkpoint QC through QuickTrace. Fabric, cutting, stitching, finishing. Audits for outsourced operations. Cost of poor quality framework established, Defect elimination at root source. Customer receives only the highest quality product.
+
+5. Flat operator structure with engineered consistency. Single hiring grade with a 10 percent advanced tier earned on merit. Rotating supervisor role within each module. Technical Production In-Charge handles machine setting and coordination. Dedicated trainer handles IE concepts, line balancing, and bottleneck resolution.
+
+6. Deskilling through work-aids. Jigs, guides, and standardised attachments for critical operations. Multi-operation training so operators are flexible, not narrow. Helpers absorb non-needle work — cheaper than tailors, reduces handling time.</div>
+
+    <div class="cell wash">We engineer garments in sampling to scale in production. Your customers see only what you have approved.
+
+PassionLab is built on a single conviction: consistent quality at scale is an engineering problem, not a supervision problem. We solve it upstream, through CLO-based digital sampling, deskilling systems, and checkpoint QC, so what leaves the floor is structurally identical to what was approved.
+
+The outcomes for brands are speed to market, lower cost of poor quality, lead time compression, and a live visibility layer that shows them exactly what is happening to their order.
+
+"Most manufacturers ask brands to trust the process. We&rsquo;re building systems where brands can see it live, from production progress to quality control, while bulk is engineered to stay aligned with the approved sample"</div>
+
+    <div class="cell navy">1. QuickTrace is proprietary operational infrastructure built for small-batch fashion manufacturing. It provides live order-level visibility and optional piece-level traceability through QR-enabled production tracking, creating a continuously improving data layer that generic manufacturing software do not offer.
+
+2. CLO 3D capability paired with founder fit and fabric expertise. Rare at this scale in India. Compresses sample TAT and locks construction earlier.
+
+3. DPP readiness via Quicktrace. EU Digital Product Passport compliance is a structural moat as regulations tighten globally. Most Indian manufacturers are years away. *Needs 3rd party audit for the digital data.
+
+4. Direct fabric vendor relationships and processing unit access. Trendy, drape-appropriate fabrics curated to the design — not the other way round.
+
+5. Senior industry leadership lineage (G Rafiq) embedded into system design, vendor relationships, and production architecture.
+
+6. Founder background in apparel industry consulting on factory improvement and digitalisation. Real IE rigour brought into process design.
+
+7. Production-friendliness dataset built order by order — a defensible, compounding asset that can be open-sourced or limited-licensed to position PassionLab as the industry reference for sample-to-bulk engineering in India.
+
+8. The integrated model itself is the moat. Manufacturing unit and digital layer built together. Each makes the other stronger. Competitors can copy one, not both.</div>
+
+    <div class="cell">Primary
+Indian D2C fashion brands moving from informal production to structured, repeatable scale.
+
+Streetwear labels needing premium and high-fashion garments — tees, polos (round / V neck), shirts, and light jackets — at 25–35 SAM and beyond.
+
+Premium and high-fashion brands that require construction precision, not generic cut-and-sew.
+
+Brands with EU market ambitions needing DPP-compliant supply chains.</div>
+  </div>
+
+  <div style="height: 6px;"></div>
+
+  <div class="row label-row">
+    <div class="cell">EXISTING ALTERNATIVES</div>
+    <div class="cell">KEY METRICS</div>
+    <div class="cell">HIGH-LEVEL CONCEPT</div>
+    <div class="cell">CHANNELS</div>
+    <div class="cell">EARLY ADOPTERS</div>
+  </div>
+
+  <div class="row hint-row">
+    <div class="cell">How brands solve this today</div>
+    <div class="cell">Numbers that prove the business is working</div>
+    <div class="cell">The shortest description of the model</div>
+    <div class="cell">How PassionLab reaches and earns trust</div>
+    <div class="cell">Sharpest profile of who buys first</div>
+  </div>
+
+  <div class="row content-row">
+    <div class="cell ghost">Informal CMT units. No structured QC, no digital systems, no audit trail. Quality is operator-dependent.
+
+Large export-oriented factories. Minimum order quantities are too high for emerging D2C brands. No focus on the small-batch premium segment.
+
+Freelance sampling studios paired with separate bulk vendors. Creates the exact sample-to-bulk gap that defines the problem.</div>
+
+    <div class="cell">Business health
+• Capacity utilisation % &amp; Efficiency %
+• Revenue per machine per shift
+• Client retention and repeat order rate
+• Operator retention per module
+
+Quality &amp; process
+• Cost of Poor Quality (COPQ)
+• Final audit pass rate (Buyer or third party)
+• Defects per Hundred Units (DHU)
+• Defect % per order run
+• Module-level 7-point inspection scoresQuality &amp; process
+
+Speed &amp; throughput
+• Sample TAT (days, CLO to approved mock)
+• Lead time per order (PO to shipment)
+• On-time delivery rate</div>
+
+    <div class="cell wash">"Organised-sector discipline. High-fashion precision. Brand-grade transparency."
+
+Quality is no longer a promise. It is a dataset.
+
+Every order leaves a trail of checkpoints, decisions, and defect logs — accessible to the brand in real time and archived as a product passport.</div>
+
+    <div class="cell">Direct outreach to D2C brand founders, specifically those who have been burned by bad manufacturing.
+
+Website with live Quicktrace dashboard demo as primary proof point.
+
+Content marketing on Instagram and LinkedIn — production process, factory floor reels, technical depth. Factory cleanliness becomes a marketing asset.
+
+Referrals from existing clients — quality retention drives word of mouth.
+
+Industry events and fashion weeks — physical presence builds credibility in premium segment.</div>
+
+    <div class="cell ghost">Founders who have paid for bad manufacturing once and refuse to pay again — they understand the cost of the sample-to-bulk gap viscerally.
+
+Premium and high-fashion brand builders who treat construction as a product feature, not a back-office concern.
+
+Brands with EU export ambition or sustainability narrative — need DPP-ready supply chains and want the traceability story.
+
+Brands frustrated with vendor opacity who actively want a dashboard, not a WhatsApp update.</div>
+  </div>
+
+  <div style="height: 6px;"></div>
+
+  <div class="bottom-row bottom-label-row">
+    <div class="cell">COST STRUCTURE</div>
+    <div class="cell deep">TIMELINE &amp; STATUS</div>
+    <div class="cell">REVENUE STREAMS</div>
+  </div>
+
+  <div class="bottom-row bottom-hint-row">
+    <div class="cell">Where capital is deployed</div>
+    <div class="cell">Where we are, where we are going</div>
+    <div class="cell">How PassionLab gets paid</div>
+  </div>
+
+  <div class="bottom-row bottom-content-row">
+    <div class="cell">One-time capex (build phase, Q4 2026)
+*please refer to the costing detaisl sheet
+
+• Sewing machinery — 30 to 40 machines mixed. Estimate ₹35–55L
+   – Single-needle lockstitch (Juki / Jack / Brother): ~₹29–35K per unit
+   – Overlock 3-thread / 5-thread: ~₹40–60K per unit
+   – Flatlock / coverstitch: ~₹55–80K per unit
+   – Feed-of-the-arm (for shirt sleeves and side seams): ~₹1–1.5L
+   – Button-hole and button-stitch automatic: ~₹1.5–2.5L
+   – Bartack automatic: ~₹1–1.5L
+   – Special machines for high-fashion (post-bed, needle-feed, computerised pattern): ~₹1.5–3L each
+• Cutting room — straight knife, band knife, fabric inspection table: ₹3–5L
+• Factory fit-out, electricals, tables, lighting, helpers' workstations: ₹8–12L
+• Quicktrace platform development (in-house): ₹0.2–1L for v1
+• CLO 3D licensing, hardware, design station: ₹3–5L
+• Work-aid tooling and jigs across critical operations: ₹2–4L
+• Initial fabric, trim and sample inventory: ₹8–15L
+
+Recurring monthly
+• Labour — tailors, helpers, supervisor (rotating), trainer, technical in-charge
+• Rent, electricity, machine maintenance, consumables
+• Quicktrace cloud and infrastructure
+• Sample development cost per style (CLO + mock sample)
+• Marketing, content production, outreach</div>
+
+    <div class="cell timeline">Current state
+Pre-build. Founder thesis, vendor relationships, and process design locked. Quicktrace specified. CLO workflow defined.
+
+Build phase
+Q4 2026 — plant setup begins.
+
+Operational phase
+Day-1 capacity target 400–550 pieces / day at 25–35 SAM. Modular plant running 2 products in parallel. Sub-cells feeding parallel assembly lines.
+
+Scale phase
+Expand to higher-SAM garments. Open or limited-license the production-friendliness dataset to the industry — positioning PassionLab as the reference standard for sample-to-bulk engineering in India.
+
+Founder ask right now
+Opportunities to work with brands and create customer delight through PassionLab's differentiated features.</div>
+
+    <div class="cell">Manufacturing revenue
+• Per-piece CMT fee tiered by product type and complexity
+   – Basic tee / polo 
+   – Shirt
+   – Light jacket and high-fashion construction
+• High-fashion premium surcharge — structured garments, elevated construction, technical execution priced separately
+• Capacity block retainers — anchor brands pay for reserved production capacity across seasons, improving floor utilisation revenue certainty
+
+Digital and design revenue
+• CLO digital sampling fee per style — charged per tech pack developed and iterated virtually before physical mock
+• Quicktrace visibility subscription — monthly access fee for brands to maintain live dashboard and order history beyond delivery
+• DPP issuance fee — per-order charge for generating and hosting Digital Product Passports via Quicktrace for EU-market and compliance-driven brands
+
+Strategic / future revenue
+• Limited-licensed access to the production-friendliness dataset for select industry partners
+• Consulting and training engagements built on the methodology</div>
+  </div>
+
+  <div class="footer">PassionLab  ·  Product Engineering &amp; Supply System  ·  India  ·  Confidential — Internal Use Only</div>
+
+</div>
+
+
+<!-- COSTING DETAIL -->
+<div class="costing-page">
+
+  <div class="cost-title">PassionLab — Indicative Capex &amp; Setup Cost</div>
+  <div class="cost-sub">Estimates for planning only — to be locked at vendor quote stage</div>
+
+  <div class="section-bar">1. SEWING MACHINERY</div>
+  <table class="cost-table">
+    <thead>
+      <tr>
+        <th class="col-item">Machine Type</th>
+        <th class="col-qty">Qty</th>
+        <th class="col-money">Unit Cost Low (₹)</th>
+        <th class="col-money">Unit Cost High (₹)</th>
+        <th class="col-money">Subtotal Mid (₹)</th>
+        <th class="col-notes">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Single-needle lockstitch (Juki / Jack / Brother)</td>
+        <td class="num">18</td>
+        <td class="num">₹29,000</td>
+        <td class="num">₹55,000</td>
+        <td class="num">₹7,56,000</td>
+        <td class="note">Core stitching workhorse for tees, polos, shirts</td>
+      </tr>
+      <tr>
+        <td>Overlock 3-thread / 5-thread</td>
+        <td class="num">6</td>
+        <td class="num">₹40,000</td>
+        <td class="num">₹80,000</td>
+        <td class="num">₹3,60,000</td>
+        <td class="note">Edge finishing on knits and wovens</td>
+      </tr>
+      <tr>
+        <td>Flatlock / coverstitch</td>
+        <td class="num">4</td>
+        <td class="num">₹55,000</td>
+        <td class="num">₹80,000</td>
+        <td class="num">₹2,70,000</td>
+        <td class="note">Hemming, decorative seams on knits</td>
+      </tr>
+      <tr>
+        <td>Feed-of-the-arm</td>
+        <td class="num">2</td>
+        <td class="num">₹1,00,000</td>
+        <td class="num">₹1,50,000</td>
+        <td class="num">₹2,50,000</td>
+        <td class="note">Shirt sleeves, side seams, jacket assembly</td>
+      </tr>
+      <tr>
+        <td>Button-hole automatic</td>
+        <td class="num">1</td>
+        <td class="num">₹1,50,000</td>
+        <td class="num">₹2,50,000</td>
+        <td class="num">₹2,00,000</td>
+        <td class="note">Shirt and jacket button-hole automation</td>
+      </tr>
+      <tr>
+        <td>Button-stitch automatic</td>
+        <td class="num">1</td>
+        <td class="num">₹1,00,000</td>
+        <td class="num">₹1,80,000</td>
+        <td class="num">₹1,40,000</td>
+        <td class="note">Pairs with button-hole machine</td>
+      </tr>
+      <tr>
+        <td>Bartack automatic</td>
+        <td class="num">1</td>
+        <td class="num">₹1,00,000</td>
+        <td class="num">₹1,50,000</td>
+        <td class="num">₹1,25,000</td>
+        <td class="note">Stress points, belt loops, label reinforcement</td>
+      </tr>
+      <tr>
+        <td>Special machines (post-bed / needle-feed / programmable)</td>
+        <td class="num">3</td>
+        <td class="num">₹1,50,000</td>
+        <td class="num">₹3,00,000</td>
+        <td class="num">₹6,75,000</td>
+        <td class="note">High-fashion garments and structured pieces</td>
+      </tr>
+      <tr class="subtotal">
+        <td>Machinery subtotal</td>
+        <td class="num">36</td>
+        <td></td>
+        <td></td>
+        <td class="num">₹27,76,000</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-bar">2. OTHER SETUP COSTS</div>
+  <table class="cost-table">
+    <thead>
+      <tr>
+        <th class="col-item">Item</th>
+        <th class="col-qty"></th>
+        <th class="col-money">Low (₹)</th>
+        <th class="col-money">High (₹)</th>
+        <th class="col-money">Mid (₹)</th>
+        <th class="col-notes">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Cutting room — straight knife, band knife, fabric inspection</td>
+        <td></td>
+        <td class="num">₹3,00,000</td>
+        <td class="num">₹5,00,000</td>
+        <td class="num">₹4,00,000</td>
+        <td class="note">Day-1 essentials; auto-cutter as Phase 2</td>
+      </tr>
+      <tr>
+        <td>Factory fit-out, electricals, lighting, workstations</td>
+        <td></td>
+        <td class="num">₹8,00,000</td>
+        <td class="num">₹12,00,000</td>
+        <td class="num">₹10,00,000</td>
+        <td class="note">Includes helper stations designed for low-handling layout</td>
+      </tr>
+      <tr>
+        <td>Quicktrace platform — v1 development &amp; infrastructure</td>
+        <td></td>
+        <td class="num">₹20,000</td>
+        <td class="num">₹1,00,000</td>
+        <td class="num">₹60,000</td>
+        <td class="note">Proprietary in-house digital production system devloped by the founder himself</td>
+      </tr>
+      <tr>
+        <td>CLO 3D licensing, hardware, design station</td>
+        <td></td>
+        <td class="num">₹3,00,000</td>
+        <td class="num">₹5,00,000</td>
+        <td class="num">₹4,00,000</td>
+        <td class="note">Sampling capability that defines the moat</td>
+      </tr>
+      <tr>
+        <td>Work-aid tooling and jigs across critical operations</td>
+        <td></td>
+        <td class="num">₹2,00,000</td>
+        <td class="num">₹4,00,000</td>
+        <td class="num">₹3,00,000</td>
+        <td class="note">Deskilling investment per operation</td>
+      </tr>
+      <tr>
+        <td>Initial fabric and trim inventory</td>
+        <td></td>
+        <td class="num">₹8,00,000</td>
+        <td class="num">₹15,00,000</td>
+        <td class="num">₹11,50,000</td>
+        <td class="note">Working capital, not depreciating capex</td>
+      </tr>
+      <tr>
+        <td>Marketing, brand, content &amp; website build</td>
+        <td></td>
+        <td class="num">₹3,00,000</td>
+        <td class="num">₹6,00,000</td>
+        <td class="num">₹4,50,000</td>
+        <td class="note">Includes initial production reels and outreach material</td>
+      </tr>
+      <tr>
+        <td>Working capital buffer (3 months operations)</td>
+        <td></td>
+        <td class="num">₹15,00,000</td>
+        <td class="num">₹25,00,000</td>
+        <td class="num">₹20,00,000</td>
+        <td class="note">Salaries, rent, utilities, consumables</td>
+      </tr>
+      <tr class="subtotal">
+        <td>Other setup subtotal</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="num">₹57,60,000</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="cost-table" style="margin-top: 18px;">
+    <tbody>
+      <tr class="grand">
+        <td style="width: 75%;">INDICATIVE TOTAL CAPEX (machinery + setup, mid estimate)</td>
+        <td class="num" style="width: 25%;">₹85,36,000</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="notes-block">
+    <h4>Notes &amp; assumptions</h4>
+    <ul>
+      <li>• Machine quantities sized for 30–40 machine modular plant, capable of running tees, polos (round / V neck), shirts, and light jackets in parallel.</li>
+      <li>• Total stitching machines in this plan: ~36 (within target band). Mix can be re-balanced based on initial product split.</li>
+      <li>• Unit costs sourced from current Indian distributor pricing (Juki / Jack / Brother / Singer) — to be locked at vendor quote stage at the time of order placement.</li>
+      <li>• Special machines accommodate high-fashion construction (post-bed for structured pieces, needle-feed for delicate fabrics, programmable for precision operations).</li>
+      <li>• Quicktrace v1 cost reflects in-house build by founder team — significantly lower than off-the-shelf manufacturing ERP licensing.</li>
+      <li>• Working capital buffer assumes 3 months of operations cover; can be scaled based on initial client commitments and capacity utilisation ramp.</li>
+      <li>• Variable costs (fabric, labour per piece, consumables per order) are not capex — modelled separately as per-piece CMT cost vs revenue.</li>
+    </ul>
+  </div>
+
+  <div class="signoff">
+    <div class="signoff-title">Founder&rsquo;s Vision Note</div>
+    <div class="signoff-line">Prepared by Mohammed Rahil</div>
+    <div class="signoff-line">rahil2491999@gmail.com</div>
+    <div class="signoff-line">— May 2026</div>
+  </div>
+
+</div>
+
+</body>
+</html>
